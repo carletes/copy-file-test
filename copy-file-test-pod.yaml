@@ -1,0 +1,32 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: copy-file-test
+spec:
+  containers:
+    - command:
+        - sleep
+        - "86400"
+      image: eccr.ecmwf.int/webdev/copy-file-range-test
+      imagePullPolicy: Always
+      name: copy-file-test
+      volumeMounts:
+        - mountPath: /data/bol-data-layer-data-green-000
+          name: bol-data-layer-data-green-000
+        - mountPath: /data/bol-data-layer-data-green-001
+          name: bol-data-layer-data-green-001
+        - mountPath: /tmp
+          name: tmp
+  volumes:
+    - emptyDir:
+        medium: Memory
+      name: tmp
+    - name: bol-data-layer-data-green-000
+      nfs:
+        path: /mnt/bodh2lnxnas-02_pool/eccharts/datastore_dh2_00
+        server: bodh2lnxnas-02.ecmwf.int
+    - name: bol-data-layer-data-green-001
+      nfs:
+        path: /mnt/bodh1lnxnas-02_pool/eccharts/datastore_dh1_00
+        server: bodh1lnxnas-02.ecmwf.int

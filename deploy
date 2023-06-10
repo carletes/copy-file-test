@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -eu -o pipefail
+
+ns="${1:-}"
+if [ "$ns" = "" ] ; then
+  me=$(basename "$0")
+  echo "Usage: $me <ns>"
+  exit 1
+fi
+
+set -x
+
+here=$(cd "$(dirname "$0")" && pwd)
+
+"${here}/push"
+
+kubectl -n "$ns" delete -f "${here}/copy-file-test-pod.yaml" || true
+kubectl -n "$ns" apply -f "${here}/copy-file-test-pod.yaml"

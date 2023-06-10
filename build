@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -eux -o pipefail
+
+here=$(cd "$(dirname "$0")" && pwd)
+image=$("${here}/image-name")
+
+docker build -t "$image" "$here"

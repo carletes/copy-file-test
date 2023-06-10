@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+echo "eccr.ecmwf.int/webdev/copy-file-range-test"
