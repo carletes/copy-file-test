@@ -4,6 +4,10 @@ In a nutshell:
 * [shutil.copyfile()][] is probably good enough.
 * Use [os.copy_file_range()][] for extra performance (with extra pitfalls)
 
+See the script [copy-file](./copy-file) in this repository for how toy may
+use both functions.
+
+
 ## Using `shutil.copyfile()`
 
 Since Python 3.8 the function [shutil.copyfile()][] is able to use more
